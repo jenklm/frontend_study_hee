@@ -5,31 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript ex3.html</title>
     <script>
+        function LinkSetColor(color){
+            var alist=document.querySelectorAll('a');
+            var i=0;
+            while(i<alist.length){
+                alist[i].style.color=color;
+                i=i+1;
+            }
+        }
+        // 객체에 속해 있는 함수는 메소드라고 함. 
+        function BodySetColor(color){
+            document.querySelector('body').style.color=color;
+        }
+        function BodySetBackgroundColor(color){
+            document.querySelector('body').style.backgroundColor=color;
+        }
         function nightDayHandler(self){
             var target = document.querySelector('body');
             if(self.value==='night'){
-                target.style.backgroundColor='black';
-                target.style.color='white';
+                Body.setBackgroundColor('black');
+                Body.setColor('white');
                 self.value='day';
-            var alist=document.querySelectorAll('a');
-            var i=0;
-            while(i<alist.length){
-                alist[i].style.color='red';
-                i=i+1;
+
+                Links.setColor('powderblue');
             }
-            } else{
-                target.style.backgroundColor='white';
-                target.style.color='black';
+            else{
+                Body.setBackgroundColor('white');
+                Body.setColor('black');
                 self.value='night';
 
-            var alist=document.querySelectorAll('a');
-            var i=0;
-            while(i<alist.length){
-                alist[i].style.color='blue';
-                i=i+1;
-            }
+                Links.setColor('blue');
             } 
-                }
+            }
             </script>
         </head>
         <body>
@@ -37,19 +44,6 @@
                 nightDayHandler(this);
             ">
 
-            <input type="button" value="black" onclick="
-                if(document.querySelector('body').dataset.mode==='day'){
-                    document.querySelector('body').style.backgroundColor='black';
-                    document.querySelector('body').style.color='white';
-                    doument.querySelector('body').dataset.mode='night';
-                    this.value='day';
-                }else{
-                    document.querySelector('body').style.backgroundColor='white';
-                    document.querySelector('body').style.color='black';
-                    document.querySelector('body').dataset.mode='day';
-                    this.value='night';
-        }
-    ">
 
     <ol>
         <li><a href="1.html">HTML</a></li>
@@ -70,6 +64,5 @@
         alongside HTML and CSS. <span>Ninety-nine percent</span> of websites use <span class="js">JavaScript</span> 
         on the client side for webpage behavior.
     </p>
-">
 </body>
 </html>
