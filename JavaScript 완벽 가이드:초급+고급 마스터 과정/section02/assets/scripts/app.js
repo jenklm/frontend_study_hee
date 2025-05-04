@@ -1,19 +1,72 @@
 const defaultResult = 0;
 let currentResult = defaultResult;
+let logEntries = [];
 
-function add(num1, num2) {
-    const result = num1 + num2;
-    alert('The result is ' + result);
+// Gets input from input field
+function getUserNumberInput() {
+  return parseInt(userInput.value);
 }
 
+// Generates and writes calculation log
+function createAndWriteOutput(operator, resultBeforCalc, calcNumber) {
+  const calcDescription = `${resultBeforCalc} ${operator} ${calcNumber}`;
+  outputResult(currentResult, calcDescription); // from vendor file
+}
 
-add(1, 3);
+function writeToLog(
+  operationIdentifier,
+  prevResult,
+  operationNumber,
+  newResult
+) {
+    const logEntry = {
+        operation: operationIdentifier,
+        prevResult: prevResult,
+        number: operationNumber,
+        result: newResult,
+      };
+      logEntries.push(logEntry);
+      console.log(logEntry.operation);
+      console.log(logEntries);
+}
 
-currentResult = (currentResult + 10) * 3 / 2 - 1;
+function add() {
+  const enteredNumber = getUserNumberInput();
+  const initialResult = currentResult;
+  currentResult += enteredNumber;
+  currentResultOutput;
+  createAndWriteOutput('+', initialResult, enteredNumber);
+  writeToLog('ADD', initialResult, enteredNumber, currentResult);
+}
 
-let calculationDescription = `(${defaultResult} + 10 ) * 3 / 2 - 1`;
+function subtract() {
+  const enteredNumber = getUserNumberInput();
+  const initialResult = currentResult;
+  currentResult -= enteredNumber;
+  createAndWriteOutput('-', initialResult, enteredNumber);
+  writeToLog('SUBSTRACT', initialResult, enteredNumber, currentResult);
+}
+
+function multiply() {
+  const enteredNumber = getUserNumberInput();
+  const initialResult = currentResult;
+  currentResult *= enteredNumber;
+  createAndWriteOutput('*', initialResult, enteredNumber);
+  writeToLog('MULTIPLY', initialResult, enteredNumber, currentResult);
+}
+
+function divide() {
+  const enteredNumber = getUserNumberInput();
+  const initialResult = currentResult;
+  currentResult /= enteredNumber;
+  createAndWriteOutput('/', initialResult, enteredNumber);
+  writeToLog('DIVIDE', initialResult, enteredNumber, currentResult);
+}
+
+addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply);
+divideBtn.addEventListener('click', divide);
 
 // 개발자 도구 > style > white-space : pre;
 let errorMessage = 'An error \n' + 'occured';
-
-outputResult(currentResult,calculationDescription);
