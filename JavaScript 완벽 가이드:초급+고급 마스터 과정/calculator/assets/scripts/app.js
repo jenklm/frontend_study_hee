@@ -8,8 +8,8 @@ function getUserNumberInput() {
 }
 
 // Generates and writes calculation log
-function createAndWriteOutput(operator, resultBeforCalc, calcNumber) {
-  const calcDescription = `${resultBeforCalc} ${operator} ${calcNumber}`;
+function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
+  const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
   outputResult(currentResult, calcDescription); // from vendor file
 }
 
@@ -26,11 +26,12 @@ function writeToLog(
     result: newResult,
   };
   logEntries.push(logEntry);
-  console.log(logEntry.operation);
+  // console.log(logEntry.operation);
   console.log(logEntries);
 }
 
 function calculateResult(calculationType) {
+  const enteredNumber = getUserNumberInput();
   if (
     calculationType !== 'ADD' && 
     calculationType !== 'SUBTRACT' &&
@@ -47,7 +48,6 @@ function calculateResult(calculationType) {
   //   calculationType === 'MULTIPLY' ||
   //   calculationType === 'DIVIDE' 
   // ) {
-    const enteredNumber = getUserNumberInput();
     const initialResult = currentResult;
     let mathOperator;
     if (calculationType === 'ADD') {
