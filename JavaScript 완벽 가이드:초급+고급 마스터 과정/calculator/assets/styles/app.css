@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+/* <!DOCTYPE html> 의 <html> 태그에 적용하는 것. */
 html {
   font-family: 'Roboto', open-sans;
 }
